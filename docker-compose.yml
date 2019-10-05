@@ -1,0 +1,20 @@
+version: "2"
+
+services:
+  nodejsapp:
+    build: ./NodeJsApp/.
+    container_name: 'nodejs_container'
+    restart: 'always'
+    ports:
+      - "5000:3030"
+    links:
+      - mysql
+    
+  mysql:
+    build: ./MYSQL/.
+    container_name: 'mysql_container'
+    restart: 'always'
+    environment:
+      - MYSQL_ROOT_PASSWORD=supersecret
+    ports:
+      - "3306:3306"
